@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PubDopterTheme {
-                // A surface container using the 'background' color from the theme
                 PugDopterNavigation()
             }
         }

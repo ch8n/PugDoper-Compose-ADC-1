@@ -1,30 +1,26 @@
 package dev.ch8n.pubdopter.ui.components
 
-import android.content.res.Resources
-import androidx.compose.foundation.Image
+import android.os.Parcelable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.request.RequestOptions
 import com.github.javafaker.Faker
-import dev.ch8n.pubdopter.R
 import dev.ch8n.pubdopter.ui.theme.*
 import dev.ch8n.pubdopter.ui.utils.Fake
 import dev.chrisbanes.accompanist.glide.GlideImage
+import kotlinx.android.parcel.Parcelize
 
 
+@Parcelize
 data class ViewStateDog(
     val name: String,
     val breed: String,
@@ -34,7 +30,7 @@ data class ViewStateDog(
     val memePhrase: String,
     val age: String,
     val avatar: String
-) {
+) : Parcelable {
     companion object {
         fun fake() = with(Faker.instance().dog()) {
             ViewStateDog(
