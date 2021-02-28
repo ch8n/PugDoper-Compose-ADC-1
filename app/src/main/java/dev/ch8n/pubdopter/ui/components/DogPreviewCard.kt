@@ -8,6 +8,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Colors
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -68,7 +69,7 @@ fun DogPreviewCard(
         ) {
 
             GlideImage(
-                data = dogData.avatar,
+                data = remember(calculation = { dogData.avatar }),
                 contentDescription = dogData.name,
                 modifier = Modifier.fillMaxSize(),
                 requestBuilder = {

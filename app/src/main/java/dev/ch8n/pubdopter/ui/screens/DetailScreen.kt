@@ -47,14 +47,15 @@ fun DetailScreen(navController: NavHostController) {
         )
 
         Box(
-            modifier = Modifier.padding(top = dp350)
+            modifier = Modifier.padding(top = dp350, start = dp16, end = dp16, bottom = dp16)
         ) {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight(),
-                shape = RoundedCornerShape(dp16),
-                backgroundColor = Color.White
+                shape = RoundedCornerShape(dp24),
+                backgroundColor = Color.White,
+                elevation = defaultElevation
             ) {
 
 

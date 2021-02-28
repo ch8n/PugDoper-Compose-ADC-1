@@ -2,11 +2,14 @@ package dev.ch8n.pubdopter.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dev.ch8n.pubdopter.ui.theme.*
+import dev.ch8n.pubdopter.ui.utils.Fake.doggies
 
 
 @Composable
@@ -19,14 +22,13 @@ fun DogGridList(modifier: Modifier, onClick: (DogData) -> Unit) {
         state = scrollState
     ) {
 
-        // Add a single item
-        items(100) {
+        itemsIndexed(doggies) { index: Int, dog: DogData ->
             Row(horizontalArrangement = Arrangement.SpaceEvenly) {
                 DogPreviewCard(
                     modifier = Modifier
                         .width(dp200)
                         .height(dp250)
-                        .padding(dp8), dogData = DogData.fake(),
+                        .padding(dp8), dogData = doggies[index],
                     onClick = onClick
                 )
 
@@ -35,7 +37,7 @@ fun DogGridList(modifier: Modifier, onClick: (DogData) -> Unit) {
                         .width(dp200)
                         .height(dp250)
                         .padding(dp8),
-                    dogData = DogData.fake(),
+                    dogData = doggies[doggies.lastIndex - index],
                     onClick = onClick
                 )
             }
