@@ -5,10 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Colors
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,7 +23,7 @@ import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-data class ViewStateDog(
+data class DogData(
     val name: String,
     val breed: String,
     val gender: String,
@@ -33,7 +35,7 @@ data class ViewStateDog(
 ) : Parcelable {
     companion object {
         fun fake() = with(Faker.instance().dog()) {
-            ViewStateDog(
+            DogData(
                 name = name(),
                 breed = breed(),
                 gender = gender(),
@@ -50,12 +52,12 @@ data class ViewStateDog(
 @Composable
 fun DogPreviewCard(
     modifier: Modifier,
-    viewStateDog: ViewStateDog,
-    onClick: (ViewStateDog) -> Unit
+    dogData: DogData,
+    onClick: (DogData) -> Unit
 ) {
     Card(
         modifier = modifier.clickable {
-            onClick.invoke(viewStateDog)
+            onClick.invoke(dogData)
         },
         shape = RoundedCornerShape(dp8),
         elevation = defaultElevation,
@@ -66,8 +68,8 @@ fun DogPreviewCard(
         ) {
 
             GlideImage(
-                data = viewStateDog.avatar,
-                contentDescription = viewStateDog.name,
+                data = dogData.avatar,
+                contentDescription = dogData.name,
                 modifier = Modifier.fillMaxSize(),
                 requestBuilder = {
                     val options = RequestOptions()
@@ -84,14 +86,23 @@ fun DogPreviewCard(
 
             Column(modifier = Modifier.padding(dp8)) {
                 Text(
-                    text = viewStateDog.name.capitalize(),
-                    fontWeight = FontWeight.Bold
+                    text = dogData.name.capitalize(),
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
-                Text(viewStateDog.breed)
+                Text(text = dogData.breed, color = Color.White)
                 Row {
-                    Text(text = viewStateDog.age.capitalize(), fontSize = sp12)
+                    Text(
+                        text = dogData.age.capitalize(),
+                        color = Color.White,
+                        fontSize = sp12
+                    )
                     Spacer(Modifier.width(dp8))
-                    Text(text = viewStateDog.gender.capitalize(), fontSize = sp12)
+                    Text(
+                        text = dogData.gender.capitalize(),
+                        color = Color.White,
+                        fontSize = sp12
+                    )
                 }
 
             }
@@ -109,7 +120,7 @@ fun DogPreviewCard(
 fun PreviewDogCard() {
     PubDopterTheme {
         DogPreviewCard(
-            viewStateDog = ViewStateDog.fake(),
+            dogData = DogData.fake(),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(dp200)

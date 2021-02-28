@@ -10,7 +10,7 @@ import dev.ch8n.pubdopter.ui.theme.*
 
 
 @Composable
-fun DogGridList(modifier: Modifier, onClick: (ViewStateDog) -> Unit) {
+fun DogGridList(modifier: Modifier, onClick: (DogData) -> Unit) {
 
     val scrollState = rememberLazyListState()
 
@@ -26,7 +26,7 @@ fun DogGridList(modifier: Modifier, onClick: (ViewStateDog) -> Unit) {
                     modifier = Modifier
                         .width(dp200)
                         .height(dp250)
-                        .padding(dp8), viewStateDog = ViewStateDog.fake(),
+                        .padding(dp8), dogData = DogData.fake(),
                     onClick = onClick
                 )
 
@@ -35,7 +35,7 @@ fun DogGridList(modifier: Modifier, onClick: (ViewStateDog) -> Unit) {
                         .width(dp200)
                         .height(dp250)
                         .padding(dp8),
-                    viewStateDog = ViewStateDog.fake(),
+                    dogData = DogData.fake(),
                     onClick = onClick
                 )
             }
