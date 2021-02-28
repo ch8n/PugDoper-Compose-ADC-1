@@ -4,14 +4,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dev.ch8n.pubdopter.ui.theme.*
 
 
 @Composable
-fun DogGridList(modifier: Modifier) {
+fun DogGridList(modifier: Modifier, onClick: (ViewStateDog) -> Unit) {
 
     val scrollState = rememberLazyListState()
 
@@ -22,14 +21,13 @@ fun DogGridList(modifier: Modifier) {
 
         // Add a single item
         items(100) {
-            Row {
+            Row(horizontalArrangement = Arrangement.SpaceEvenly) {
                 DogPreviewCard(
                     modifier = Modifier
                         .width(dp200)
                         .height(dp250)
-                        .padding(dp8),
-                    viewStateDog = ViewStateDog.fake()
-
+                        .padding(dp8), viewStateDog = ViewStateDog.fake(),
+                    onClick = onClick
                 )
 
                 DogPreviewCard(
@@ -37,7 +35,8 @@ fun DogGridList(modifier: Modifier) {
                         .width(dp200)
                         .height(dp250)
                         .padding(dp8),
-                    viewStateDog = ViewStateDog.fake()
+                    viewStateDog = ViewStateDog.fake(),
+                    onClick = onClick
                 )
             }
         }
@@ -58,7 +57,8 @@ fun PreviewDogList() {
         DogGridList(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(dp16)
+                .padding(dp16),
+            onClick = {}
         )
     }
 }

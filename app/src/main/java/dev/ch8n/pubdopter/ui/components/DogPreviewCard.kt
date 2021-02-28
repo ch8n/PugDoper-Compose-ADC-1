@@ -2,6 +2,7 @@ package dev.ch8n.pubdopter.ui.components
 
 import android.content.res.Resources
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -51,9 +52,15 @@ data class ViewStateDog(
 }
 
 @Composable
-fun DogPreviewCard(modifier: Modifier, viewStateDog: ViewStateDog) {
+fun DogPreviewCard(
+    modifier: Modifier,
+    viewStateDog: ViewStateDog,
+    onClick: (ViewStateDog) -> Unit
+) {
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable {
+            onClick.invoke(viewStateDog)
+        },
         shape = RoundedCornerShape(dp8),
         elevation = defaultElevation,
     ) {
@@ -110,7 +117,8 @@ fun PreviewDogCard() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(dp200)
-                .padding(8.dp)
+                .padding(8.dp),
+            onClick = {}
         )
     }
 }
