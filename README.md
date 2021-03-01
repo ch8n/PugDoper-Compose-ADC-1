@@ -1,7 +1,8 @@
+
 <h1 align="center"><a href="https://chetangupta.net/" target="_blank">AndroidBites</a>
 </h1>
 
-![AndroidBites](./androidbites.jpg)
+![AndroidBites](https://user-images.githubusercontent.com/11576342/109490856-d5839280-7aae-11eb-89aa-c64ee8c81c35.jpg)
 
 ## Android Developer Challeneg 2021 [Week 1]
 
@@ -11,16 +12,11 @@
 
 Application to participate in [Android Dev Challenege 2021](https://android-developers.googleblog.com/2021/02/android-dev-challenge-lift-off-with.html)
 
-
-
-
 # PupDopter :dog2:
 PupDopter :dog2: is Puppy adoption app build with :heart: and :rocket: Jetpack Compose #AndroidDevChallenge
 
 ## Preview :movie_camera:
-
-
-
+https://user-images.githubusercontent.com/11576342/109490821-c7357680-7aae-11eb-85eb-6d7a86332fee.mp4
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) official programming language for Android development.
@@ -34,7 +30,6 @@ You need to have [Android Studio Beta 3 or above](https://developer.android.com/
 <img src="./beta_android.png" height="200" alt="Beta-studio"/>
 <br>
 
-
 ## :eyes: Social
 [LinkedIn](https://bit.ly/ch8n-linkdIn) |
 [Medium](https://bit.ly/ch8n-medium-blog) |
@@ -45,7 +40,6 @@ You need to have [Android Studio Beta 3 or above](https://developer.android.com/
 [Github](https://bit.ly/ch8n-git) |
 [Instagram](https://bit.ly/ch8n-insta) |
 [Youtube](https://bit.ly/ch8n-youtube)
-
 
 
 ## :cop: License
