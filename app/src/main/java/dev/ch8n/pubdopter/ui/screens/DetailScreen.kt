@@ -5,14 +5,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import com.bumptech.glide.request.RequestOptions
 import com.github.javafaker.Faker
+import dev.ch8n.pubdopter.R
 import dev.ch8n.pubdopter.ui.components.DetailInfoCell
 import dev.ch8n.pubdopter.ui.components.DogData
 import dev.ch8n.pubdopter.ui.components.DogImageError
@@ -20,6 +24,12 @@ import dev.ch8n.pubdopter.ui.components.DogImageLoader
 import dev.ch8n.pubdopter.ui.navigation.getArg
 import dev.ch8n.pubdopter.ui.theme.*
 import dev.chrisbanes.accompanist.glide.GlideImage
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+
+import java.time.format.DateTimeFormatter
+
 
 @Composable
 fun DetailScreen(navController: NavHostController) {
@@ -63,13 +73,44 @@ fun DetailScreen(navController: NavHostController) {
 
                     Spacer(modifier = Modifier.height(dp8))
 
-                    Text(
-                        text = dogData.name,
-                        fontSize = sp28,
-                        fontWeight = FontWeight.ExtraBold
-                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = dogData.name,
+                            fontSize = sp28,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+
+                        Spacer(modifier = Modifier.width(dp8))
+
+                        val genderRes = if (dogData.gender.toLowerCase() == "male") {
+                            R.drawable.ic_male_gender
+                        } else {
+                            R.drawable.ic_female
+                        }
+                        val genderIcon: Painter = painterResource(id = genderRes)
+                        Icon(
+                            painter = genderIcon,
+                            contentDescription = null,
+                            modifier = Modifier.size(dp24),
+                            tint = Color.Gray
+                        )
+                    }
+
+
 
                     Row(modifier = Modifier.padding(top = dp16)) {
+
+                        val df: DateFormat = SimpleDateFormat("MM/dd")
+                        val date = Faker.instance().date().birthday()
+                        val startDate: String = df.format(date)
+
+                        DetailInfoCell(label = "DOB", value = startDate)
+
+                        Spacer(Modifier.width(dp16))
 
                         DetailInfoCell(label = "Gender", value = dogData.gender)
 
@@ -126,12 +167,25 @@ fun DetailScreen(navController: NavHostController) {
                                 dogData.memePhrase,
                                 Toast.LENGTH_SHORT
                             ).show()
-                        }) {
+                        },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Teal200)
+                    ) {
+
+                        val homeIcon: Painter = painterResource(id = R.drawable.ic_home)
+                        Icon(
+                            painter = homeIcon,
+                            contentDescription = null,
+                            modifier = Modifier.size(dp16),
+                            tint = Color.White
+                        )
+
+                        Spacer(modifier = Modifier.width(dp16))
 
                         Text(
                             text = "Adopt ${dogData.name} Now!",
                             fontSize = sp14,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
                         )
 
                     }
@@ -145,7 +199,7 @@ fun DetailScreen(navController: NavHostController) {
 
                         Button(
                             modifier = Modifier
-                                .fillMaxWidth(0.3f)
+                                .fillMaxWidth(0.35f)
                                 .height(dp48),
                             onClick = {
                                 Toast.makeText(
@@ -154,8 +208,20 @@ fun DetailScreen(navController: NavHostController) {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             },
-                            colors = ButtonDefaults.buttonColors(backgroundColor = Purple200)
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Magenta)
                         ) {
+
+
+                            val homeIcon: Painter = painterResource(id = R.drawable.ic_like)
+                            Icon(
+                                painter = homeIcon,
+                                contentDescription = null,
+                                modifier = Modifier.size(dp16),
+                                tint = Color.White
+                            )
+
+                            Spacer(modifier = Modifier.width(dp16))
+
 
                             Text(
                                 text = "favorite",
@@ -176,9 +242,18 @@ fun DetailScreen(navController: NavHostController) {
                                     dogData.memePhrase,
                                     Toast.LENGTH_SHORT
                                 ).show()
-                            },
-                            colors = ButtonDefaults.buttonColors(backgroundColor = Teal200)
+                            }
                         ) {
+
+                            val homeIcon: Painter = painterResource(id = R.drawable.ic_location)
+                            Icon(
+                                painter = homeIcon,
+                                contentDescription = null,
+                                modifier = Modifier.size(dp16),
+                                tint = Color.White
+                            )
+
+                            Spacer(modifier = Modifier.width(dp16))
 
                             Text(
                                 text = "Book a Visit",
