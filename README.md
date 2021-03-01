@@ -16,7 +16,9 @@ Application to participate in [Android Dev Challenege 2021](https://android-deve
 PupDopter :dog2: is Puppy adoption app build with :heart: and :rocket: Jetpack Compose #AndroidDevChallenge
 
 ## Preview :movie_camera:
-[preview](./pugdopter.gif)
+<br>
+<img src="./pugdopter.gif" alt="pugdopter Preview"/>
+<br>
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) official programming language for Android development.
