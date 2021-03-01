@@ -58,7 +58,8 @@ dependencies {
     // for fake data
     implementation 'com.github.javafaker:javafaker:1.0.2'
     // Glide compose
-    implementation "dev.chrisbanes.accompanist:accompanist-glide:0.6.0"
+    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.6.0"
+    implementation "io.coil-kt:coil-gif:1.1.1"
     // compose navigation
     implementation "androidx.navigation:navigation-compose:1.0.0-alpha08"
 

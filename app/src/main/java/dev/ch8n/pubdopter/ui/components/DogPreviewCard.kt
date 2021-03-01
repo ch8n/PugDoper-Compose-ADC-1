@@ -1,28 +1,33 @@
 package dev.ch8n.pubdopter.ui.components
 
+import android.os.Build
+import android.os.Build.VERSION.SDK_INT
 import android.os.Parcelable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.request.RequestOptions
+import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import com.github.javafaker.Faker
 import dev.ch8n.pubdopter.R
 import dev.ch8n.pubdopter.ui.theme.*
 import dev.ch8n.pubdopter.ui.utils.Fake
-import dev.chrisbanes.accompanist.glide.GlideImage
+import dev.chrisbanes.accompanist.coil.CoilImage
+import dev.chrisbanes.accompanist.coil.LocalImageLoader
 import kotlinx.android.parcel.Parcelize
 
 
@@ -71,29 +76,32 @@ fun DogPreviewCard(
             contentAlignment = Alignment.BottomStart
         ) {
 
-            GlideImage(
-                data = remember(calculation = { dogData.avatar }),
-                contentDescription = dogData.name,
-                modifier = Modifier.fillMaxSize(),
-                requestBuilder = {
-                    val options = RequestOptions()
-                    options.centerCrop()
-                    apply(options)
-                },
-                loading = {
-                    DogImageLoader(Modifier.matchParentSize())
+            val imageLoader = ImageLoader.Builder(LocalContext.current)
+                .componentRegistry {
+                    if (SDK_INT >= 28) {
+                        add(ImageDecoderDecoder())
+                    } else {
+                        add(GifDecoder())
+                    }
                 }
-            )
+                .build()
 
-            GlideImage(
+            CompositionLocalProvider(LocalImageLoader provides imageLoader) {
+                CoilImage(
+                    data = remember(calculation = { dogData.avatar }),
+                    contentDescription = dogData.name,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.FillWidth,
+                    loading = {
+                        DogImageLoader(Modifier.matchParentSize())
+                    }
+                )
+            }
+            CoilImage(
                 data = R.drawable.gradient,
                 contentDescription = dogData.name,
                 modifier = Modifier.fillMaxSize(),
-                requestBuilder = {
-                    val options = RequestOptions()
-                    options.centerCrop()
-                    apply(options)
-                }
+                contentScale = ContentScale.FillBounds,
             )
 
             Column(modifier = Modifier.padding(dp8)) {

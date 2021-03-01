@@ -1,28 +1,23 @@
 package dev.ch8n.pubdopter.ui.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.bumptech.glide.request.RequestOptions
 import dev.ch8n.pubdopter.R
 import dev.ch8n.pubdopter.ui.theme.PubDopterTheme
-import dev.ch8n.pubdopter.ui.theme.dp200
-import dev.chrisbanes.accompanist.glide.GlideImage
+import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun DogImageLoader(modifier: Modifier) {
     Box(modifier = modifier) {
-        GlideImage(
+        CoilImage(
             data = R.raw.light_dog_run,
             contentDescription = "Loading",
             modifier = Modifier.fillMaxSize(),
-            requestBuilder = {
-                val options = RequestOptions()
-                options.centerCrop()
-                apply(options)
-            },
+            contentScale = ContentScale.FillWidth,
         )
     }
 }

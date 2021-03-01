@@ -1,5 +1,6 @@
 package dev.ch8n.pubdopter
 
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import dev.ch8n.pubdopter.ui.components.DogGridList
 import dev.ch8n.pubdopter.ui.navigation.PugDopterNavigation
 import dev.ch8n.pubdopter.ui.theme.PubDopterTheme

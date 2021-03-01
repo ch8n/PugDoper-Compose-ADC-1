@@ -23,24 +23,14 @@ fun DogGridList(modifier: Modifier, onClick: (DogData) -> Unit) {
     ) {
 
         itemsIndexed(doggies) { index: Int, dog: DogData ->
-            Row(horizontalArrangement = Arrangement.SpaceEvenly) {
-                DogPreviewCard(
-                    modifier = Modifier
-                        .width(dp200)
-                        .height(dp250)
-                        .padding(dp8), dogData = doggies[index],
-                    onClick = onClick
-                )
-
-                DogPreviewCard(
-                    modifier = Modifier
-                        .width(dp200)
-                        .height(dp250)
-                        .padding(dp8),
-                    dogData = doggies[doggies.lastIndex - index],
-                    onClick = onClick
-                )
-            }
+            DogPreviewCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(dp250)
+                    .padding(dp8),
+                dogData = doggies[index],
+                onClick = onClick
+            )
         }
 
     }

@@ -1,19 +1,19 @@
 package dev.ch8n.pubdopter.ui.screens
 
-import android.content.res.Resources
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
+import dev.ch8n.pubdopter.R
 import dev.ch8n.pubdopter.ui.components.DogGridList
 import dev.ch8n.pubdopter.ui.navigation.Screen
 import dev.ch8n.pubdopter.ui.navigation.addArg
@@ -23,18 +23,32 @@ import dev.ch8n.pubdopter.ui.theme.*
 fun HomeScreen(navController: NavHostController) {
     Surface(color = MaterialTheme.colors.background) {
         Column(modifier = Modifier.fillMaxSize()) {
-            TopAppBar(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(dp48)
+
+            Row(
+                modifier = Modifier.padding(
+                    start = dp16,
+                    top = dp16,
+                ),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "pugDopter".capitalize(),
-                    color = Color.White,
-                    fontSize = sp18,
-                    fontWeight = FontWeight.ExtraBold
+                    text = "pugDopte".capitalize(),
+                    color = Color.Black,
+                    fontSize = sp28,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontStyle = FontStyle.Italic
+                )
+
+                val adpotIcon: Painter = painterResource(id = R.drawable.ic_adapot)
+                Icon(
+                    painter = adpotIcon,
+                    contentDescription = null,
+                    modifier = Modifier.size(dp36),
+                    tint = Color.DarkGray
                 )
             }
+
+
             DogGridList(
                 modifier = Modifier
                     .fillMaxSize()
