@@ -1,8 +1,8 @@
 package dev.ch8n.pubdopter.ui.components
 
-import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Parcelable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,6 +13,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -23,14 +24,13 @@ import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import com.github.javafaker.Faker
-import dev.ch8n.pubdopter.R
 import dev.ch8n.pubdopter.ui.theme.*
 import dev.ch8n.pubdopter.ui.utils.Fake
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.chrisbanes.accompanist.coil.LocalImageLoader
 import kotlinx.android.parcel.Parcelize
 
-
+// todo move this to model poackage
 @Parcelize
 data class DogData(
     val name: String,
@@ -57,6 +57,7 @@ data class DogData(
         }
     }
 }
+
 
 @Composable
 fun DogPreviewCard(
@@ -97,12 +98,24 @@ fun DogPreviewCard(
                     }
                 )
             }
-            CoilImage(
-                data = R.drawable.gradient,
-                contentDescription = dogData.name,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.FillBounds,
-            )
+
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        //todo check gradient
+                        Brush.verticalGradient(
+                            listOf(
+                                Color.Transparent,
+                                Color.Transparent,
+                                Color.Transparent,
+                                Color.DarkGray
+                            )
+                        ),
+                    ),
+            ) {
+            }
 
             Column(modifier = Modifier.padding(dp8)) {
                 Text(

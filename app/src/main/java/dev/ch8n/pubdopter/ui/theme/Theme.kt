@@ -13,8 +13,9 @@ private val DarkColorPalette = darkColors(
     secondary = Teal200
 )
 
+// Todo update status bar color with compose
 private val LightColorPalette = lightColors(
-    primary = Color.DarkGray,
+    primary = Purple500,
     primaryVariant = Purple700,
     secondary = Teal200
 

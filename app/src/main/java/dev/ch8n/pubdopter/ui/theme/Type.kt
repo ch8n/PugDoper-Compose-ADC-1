@@ -6,6 +6,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
+// todo update current typography
+// learn from => https://github.com/TheCodeMonks/TopCorn2/blob/master/app/src/main/java/com/theapache64/topcorn2/ui/theme/Typography.kt
 // Set of Material typography styles to start with
 val Typography = Typography(
         body1 = TextStyle(

@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.ImageLoader
 import coil.decode.GifDecoder
@@ -37,6 +38,8 @@ import java.text.SimpleDateFormat
 @Composable
 fun DetailScreen(navController: NavHostController) {
     Surface(color = MaterialTheme.colors.background) {
+
+
         val dogData = requireNotNull(navController.getArg<DogData>("dogData"))
         val context = LocalContext.current
 
@@ -67,13 +70,18 @@ fun DetailScreen(navController: NavHostController) {
             )
         }
 
+
+
         Box(
-            modifier = Modifier.padding(top = dp350, start = dp16, end = dp16, bottom = dp16)
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.BottomCenter
         ) {
+
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(),
+                    .padding(bottom = 24.dp, start = 16.dp, end = 16.dp),
                 shape = RoundedCornerShape(dp24),
                 backgroundColor = Color.White,
                 elevation = defaultElevation

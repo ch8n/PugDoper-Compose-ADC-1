@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import dev.ch8n.pubdopter.ui.screens.DetailScreen
 import dev.ch8n.pubdopter.ui.screens.HomeScreen
 
-
+// sessions
 sealed class Screen(val route: String) {
     object Home : Screen("home")
     object Detail : Screen("detail")
@@ -24,6 +24,10 @@ fun <T : Parcelable> NavController.addArg(keyValue: Pair<String, T>): NavControl
     return this
 }
 
+
+// todo research on how to pass objects from navigations
+// slack thread --> https://kotlinlang.slack.com/archives/CJLTWPH7S/p1614443229081300
+// redux ==> store
 @Composable
 fun PugDopterNavigation() {
     val navController = rememberNavController()
