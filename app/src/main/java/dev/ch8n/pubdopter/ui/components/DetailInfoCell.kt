@@ -2,31 +2,31 @@ package dev.ch8n.pubdopter.ui.components
 
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import dev.ch8n.pubdopter.ui.theme.PubDopterTheme
+import dev.ch8n.pubdopter.ui.theme.*
 import dev.ch8n.pubdopter.ui.theme.dp4
-import dev.ch8n.pubdopter.ui.theme.sp10
-import dev.ch8n.pubdopter.ui.theme.sp14
 
 
 @Composable
 fun DetailInfoCell(label: String, value: String) {
-    Column {
+    Column(
+        modifier = Modifier.padding(end = dp16)
+    ) {
         Text(
             text = label.capitalize(),
-            fontSize = sp14,
-            fontWeight = FontWeight.Medium
+            style = MaterialTheme.typography.caption
         )
 
-        Spacer(modifier = Modifier.height(dp4))
+        Spacer(modifier = Modifier.height(dp2))
 
         Text(
             text = value.capitalize(),
-            fontSize = sp10
+            style = MaterialTheme.typography.body2
         )
     }
 }

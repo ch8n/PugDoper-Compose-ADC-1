@@ -9,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -39,10 +41,8 @@ import java.text.SimpleDateFormat
 fun DetailScreen(navController: NavHostController) {
     Surface(color = MaterialTheme.colors.background) {
 
-
         val dogData = requireNotNull(navController.getArg<DogData>("dogData"))
         val context = LocalContext.current
-
         val imageLoader = ImageLoader.Builder(LocalContext.current)
             .componentRegistry {
                 if (Build.VERSION.SDK_INT >= 28) {
@@ -53,28 +53,44 @@ fun DetailScreen(navController: NavHostController) {
             }
             .build()
 
-        CompositionLocalProvider(LocalImageLoader provides imageLoader) {
-            CoilImage(
-                data = dogData.avatar,
-                contentDescription = dogData.name,
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(dp400),
-                loading = {
-                    DogImageLoader(Modifier.matchParentSize())
-                },
-                error = {
-                    DogImageError(Modifier.matchParentSize())
-                }
-            )
+
+        Box {
+
+            CompositionLocalProvider(LocalImageLoader provides imageLoader) {
+                CoilImage(
+                    data = dogData.avatar,
+                    contentDescription = dogData.name,
+                    contentScale = ContentScale.FillBounds,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(dp400),
+                    loading = {
+                        DogImageLoader(Modifier.matchParentSize())
+                    },
+                    error = {
+                        DogImageError(Modifier.matchParentSize())
+                    }
+                )
+            }
+
+            IconButton(
+                onClick = { navController.popBackStack() },
+            ) {
+
+                val backIcon: Painter = painterResource(id = R.drawable.ic_back)
+                Icon(
+                    painter = backIcon,
+                    contentDescription = null,
+                    modifier = Modifier.size(dp24),
+                    tint = Color.White
+                )
+            }
+
         }
 
 
-
         Box(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.BottomCenter
         ) {
 
@@ -84,44 +100,48 @@ fun DetailScreen(navController: NavHostController) {
                     .padding(bottom = 24.dp, start = 16.dp, end = 16.dp),
                 shape = RoundedCornerShape(dp24),
                 backgroundColor = Color.White,
-                elevation = defaultElevation
+                elevation = defaultElevation,
             ) {
 
-
-                Column(modifier = Modifier.padding(dp16)) {
-
-                    Spacer(modifier = Modifier.height(dp8))
+                Column(
+                    modifier = Modifier.padding(dp20)
+                ) {
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+
                         Text(
                             text = dogData.name,
-                            fontSize = sp28,
-                            fontWeight = FontWeight.ExtraBold
+                            style = MaterialTheme.typography.h1
                         )
 
                         Spacer(modifier = Modifier.width(dp8))
 
-                        val genderRes = if (dogData.gender.toLowerCase() == "male") {
-                            R.drawable.ic_male_gender
+                        val (asset, color) = if (dogData.gender.toLowerCase() == "male") {
+                            R.drawable.ic_male_gender to Color.Blue
                         } else {
-                            R.drawable.ic_female
+                            R.drawable.ic_female to Color.Magenta
                         }
-                        val genderIcon: Painter = painterResource(id = genderRes)
+
+                        val genderIcon: Painter = painterResource(id = asset)
                         Icon(
                             painter = genderIcon,
                             contentDescription = null,
                             modifier = Modifier.size(dp24),
-                            tint = Color.Gray
+                            tint = color
                         )
                     }
 
 
 
-                    Row(modifier = Modifier.padding(top = dp16)) {
-
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = dp16),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
                         val df: DateFormat = SimpleDateFormat("MM/dd")
                         val date = Faker.instance().date().birthday()
                         val startDate: String = df.format(date)
@@ -136,44 +156,33 @@ fun DetailScreen(navController: NavHostController) {
 
                         DetailInfoCell(label = "Age", value = dogData.age)
 
-                        Spacer(Modifier.width(dp16))
-
-                        DetailInfoCell(label = "Breed", value = dogData.breed)
-
                     }
 
                     Spacer(modifier = Modifier.height(dp16))
 
                     Text(
                         text = "About",
-                        fontSize = sp14,
-                        fontWeight = FontWeight.Medium
+                        style = MaterialTheme.typography.h3
                     )
 
-                    Spacer(modifier = Modifier.height(dp8))
+                    Spacer(modifier = Modifier.height(dp4))
 
                     Text(
                         text = Faker.instance().lorem().paragraph(10),
-                        fontSize = sp12,
-                        fontWeight = FontWeight.Normal
+                        style = MaterialTheme.typography.body2
                     )
-
 
                     Spacer(modifier = Modifier.height(dp16))
 
                     Text(
                         text = "Happy Sound",
-                        fontSize = sp14,
-                        fontWeight = FontWeight.Medium
+                        style = MaterialTheme.typography.h3
                     )
 
                     Text(
-                        text = dogData.happySound,
-                        fontSize = sp12,
-                        fontWeight = FontWeight.Normal
+                        text = dogData.happySound.repeat(3),
+                        style = MaterialTheme.typography.body2
                     )
-
-                    Spacer(modifier = Modifier.height(dp48))
 
                     Button(
                         modifier = Modifier

@@ -20,31 +20,37 @@ val Typography = Typography(
     h1 = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Bold,
-        fontSize = sp24
+        fontSize = sp24,
+        color = TextColor
     ),
     h3 = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Bold,
-        fontSize = sp16
+        fontSize = sp16,
+        color = TextColor
     ),
     caption = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.SemiBold,
-        fontSize = sp10
+        fontSize = sp10,
+        color = TextColor
     ),
     body1 = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Normal,
-        fontSize = sp14
+        fontSize = sp14,
+        color = TextColor
     ),
     body2 = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Normal,
-        fontSize = sp12
+        fontSize = sp12,
+        color = TextColor
     ),
     button = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Medium,
-        fontSize = sp16
+        fontSize = sp16,
+        color = TextColor
     ),
 )

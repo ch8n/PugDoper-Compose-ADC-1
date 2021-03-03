@@ -22,21 +22,22 @@ import dev.ch8n.pubdopter.ui.theme.*
 @Composable
 fun HomeScreen(navController: NavHostController) {
     Surface(color = MaterialTheme.colors.background) {
+
         Column(modifier = Modifier.fillMaxSize()) {
 
             Row(
-                modifier = Modifier.padding(
-                    start = dp16,
-                    top = dp16,
-                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = dp16,
+                        top = dp16,
+                        end = dp16
+                    ),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "pugDopte".capitalize(),
-                    color = Color.Black,
-                    fontSize = sp28,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontStyle = FontStyle.Italic
+                    text = "PugDopter",
+                    style = MaterialTheme.typography.h1
                 )
 
                 val adpotIcon: Painter = painterResource(id = R.drawable.ic_adapot)
@@ -44,7 +45,7 @@ fun HomeScreen(navController: NavHostController) {
                     painter = adpotIcon,
                     contentDescription = null,
                     modifier = Modifier.size(dp36),
-                    tint = Color.DarkGray
+                    tint = TextColor
                 )
             }
 
