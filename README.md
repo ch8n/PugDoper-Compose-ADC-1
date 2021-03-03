@@ -1,34 +1,28 @@
+# PupDopter :dog2:
+PupDopter :dog2: is Puppy adoption app build with :heart: and :rocket: Jetpack Compose #AndroidDevChallenge
 
-<h1 align="center"><a href="https://chetangupta.net/" target="_blank">AndroidBites</a>
-</h1>
+<img src="./pubdoper_preview.jpg" align=center width=800px alt="pugdopter Preview"/>
 
-![AndroidBites](https://user-images.githubusercontent.com/11576342/109490856-d5839280-7aae-11eb-89aa-c64ee8c81c35.jpg)
 
-## Android Developer Challeneg 2021 [Week 1]
+## Preview :movie_camera:
+<br>
+<img src="./pugdopter.gif" alt="pugdopter Preview"/>
+<br>
 
+# Android Developer Challeneg 2021 [Week 1]
 <div>
     <img src="https://1.bp.blogspot.com/-d6KGTLsbI3M/YDQSlsM1LXI/AAAAAAAAQHQ/bFFOakT2je4o-y0oPCfW9gzBjuqmfi4dQCLcBGAsYHQ/s0/Screen%2BShot%2B2021-02-11%2Bat%2B10.58.49.png" height=200px />
 </div>
 
 Application to participate in [Android Dev Challenege 2021](https://android-developers.googleblog.com/2021/02/android-dev-challenge-lift-off-with.html)
 
-# PupDopter :dog2:
-PupDopter :dog2: is Puppy adoption app build with :heart: and :rocket: Jetpack Compose #AndroidDevChallenge
 
-## Special Thanks to [S.Sanju](https://github.com/Spikeysanju) for Revamping the Designings
-
-## Preview :movie_camera:
-<br>
-<img src="./pubdoper_preview.jpg" height=800px alt="pugdopter Preview"/>
-<img src="./pugdopter.gif" alt="pugdopter Preview"/>
-<br>
-
+### Special Thanks to [S.Sanju](https://github.com/Spikeysanju) for Revamping the Designings
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) official programming language for Android development.
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) Android’s modern toolkit for building native UI.
 - [Jetpack Compose Navigation](https://developer.android.com/jetpack/compose/navigation) - Navigation between screens of Application
-
 
 ## Build-tool 🧰
 You need to have [Android Studio Beta 3 or above](https://developer.android.com/studio/preview) to build this project.
