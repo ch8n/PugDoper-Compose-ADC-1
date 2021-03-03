@@ -3,6 +3,7 @@ PupDopter :dog2: is Puppy adoption app build with :heart: and :rocket: Jetpack C
 
 <img src="./pubdoper_preview.jpg" align=center width=800px alt="pugdopter Preview"/>
 
+### Special Thanks to [S.Sanju](https://github.com/Spikeysanju) for Revamping the Designings
 
 ## Preview :movie_camera:
 <br>
@@ -17,7 +18,7 @@ PupDopter :dog2: is Puppy adoption app build with :heart: and :rocket: Jetpack C
 Application to participate in [Android Dev Challenege 2021](https://android-developers.googleblog.com/2021/02/android-dev-challenge-lift-off-with.html)
 
 
-### Special Thanks to [S.Sanju](https://github.com/Spikeysanju) for Revamping the Designings
+
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) official programming language for Android development.
