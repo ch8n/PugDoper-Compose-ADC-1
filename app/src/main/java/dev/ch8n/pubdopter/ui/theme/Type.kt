@@ -16,9 +16,6 @@ val Poppins = FontFamily(
     Font(R.font.poppins_semibold, FontWeight.SemiBold)
 )
 
-// todo update current typography
-// learn from => https://github.com/TheCodeMonks/TopCorn2/blob/master/app/src/main/java/com/theapache64/topcorn2/ui/theme/Typography.kt
-// Set of Material typography styles to start with
 val Typography = Typography(
     h1 = TextStyle(
         fontFamily = Poppins,
@@ -47,7 +44,7 @@ val Typography = Typography(
     ),
     button = TextStyle(
         fontFamily = Poppins,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Medium,
         fontSize = sp16
     ),
 )

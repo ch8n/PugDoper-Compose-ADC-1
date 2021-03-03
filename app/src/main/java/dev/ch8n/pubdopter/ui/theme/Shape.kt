@@ -5,7 +5,9 @@ import androidx.compose.material.Shapes
 import androidx.compose.ui.unit.dp
 
 val Shapes = Shapes(
-        small = RoundedCornerShape(4.dp),
-        medium = RoundedCornerShape(4.dp),
-        large = RoundedCornerShape(0.dp)
+    small = RoundedCornerShape(dp4),
+    medium = RoundedCornerShape(dp4),
+    large = RoundedCornerShape(dp0)
 )
+
+val defaultCardCorner = RoundedCornerShape(dp16)

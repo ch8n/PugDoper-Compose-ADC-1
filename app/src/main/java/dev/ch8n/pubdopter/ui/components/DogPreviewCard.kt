@@ -1,5 +1,6 @@
 package dev.ch8n.pubdopter.ui.components
 
+import android.graphics.fonts.FontFamily
 import android.os.Build.VERSION.SDK_INT
 import android.os.Parcelable
 import androidx.compose.foundation.background
@@ -7,6 +8,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -15,8 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,6 +29,7 @@ import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import com.github.javafaker.Faker
+import dev.ch8n.pubdopter.R
 import dev.ch8n.pubdopter.ui.theme.*
 import dev.ch8n.pubdopter.ui.utils.Fake
 import dev.chrisbanes.accompanist.coil.CoilImage
@@ -66,80 +72,98 @@ fun DogPreviewCard(
     onClick: (DogData) -> Unit
 ) {
     Card(
-        modifier = modifier.clickable {
-            onClick.invoke(dogData)
-        },
-        shape = RoundedCornerShape(dp8),
+        modifier = modifier.clickable { onClick.invoke(dogData) },
+        shape = defaultCardCorner,
         elevation = defaultElevation,
     ) {
+
+        val imageLoader = ImageLoader.Builder(LocalContext.current)
+            .componentRegistry {
+                if (SDK_INT >= 28) {
+                    add(ImageDecoderDecoder())
+                } else {
+                    add(GifDecoder())
+                }
+            }
+            .build()
+
+
+
         Box(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.BottomStart
+            contentAlignment = Alignment.TopCenter
         ) {
-
-            val imageLoader = ImageLoader.Builder(LocalContext.current)
-                .componentRegistry {
-                    if (SDK_INT >= 28) {
-                        add(ImageDecoderDecoder())
-                    } else {
-                        add(GifDecoder())
-                    }
-                }
-                .build()
-
             CompositionLocalProvider(LocalImageLoader provides imageLoader) {
-                CoilImage(
-                    data = remember(calculation = { dogData.avatar }),
-                    contentDescription = dogData.name,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.FillWidth,
-                    loading = {
-                        DogImageLoader(Modifier.matchParentSize())
-                    }
-                )
-            }
-
-
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        //todo check gradient
-                        Brush.verticalGradient(
-                            listOf(
-                                Color.Transparent,
-                                Color.Transparent,
-                                Color.Transparent,
-                                Color.DarkGray
-                            )
-                        ),
-                    ),
-            ) {
-            }
-
-            Column(modifier = Modifier.padding(dp8)) {
-                Text(
-                    text = dogData.name.capitalize(),
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
-                Text(text = dogData.breed, color = Color.White)
-                Row {
-                    Text(
-                        text = dogData.age.capitalize(),
-                        color = Color.White,
-                        fontSize = sp12
-                    )
-                    Spacer(Modifier.width(dp8))
-                    Text(
-                        text = dogData.gender.capitalize(),
-                        color = Color.White,
-                        fontSize = sp12
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(0.7f)
+                        .padding(start = dp16, end = dp16, top = dp16),
+                    shape = defaultCardCorner,
+                ) {
+                    CoilImage(
+                        data = remember(calculation = { dogData.avatar }),
+                        contentDescription = dogData.name,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.FillBounds,
+                        loading = {
+                            DogImageLoader(Modifier.matchParentSize())
+                        }
                     )
                 }
-
             }
         }
+
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+
+            Column(modifier = Modifier.padding(dp16)) {
+
+                Row {
+                    Text(
+                        text = dogData.name.capitalize(),
+                        style = MaterialTheme.typography.h3,
+                    )
+
+                    val (asset, color) = if (dogData.gender.toLowerCase() == "male") {
+                        R.drawable.ic_male_gender to Color.Blue
+                    } else {
+                        R.drawable.ic_female to Color.Magenta
+                    }
+
+                    Spacer(modifier = Modifier.width(dp2))
+
+                    val genderIcon: Painter = painterResource(id = asset)
+                    Icon(
+                        painter = genderIcon,
+                        contentDescription = null,
+                        modifier = Modifier.size(dp12),
+                        tint = color
+                    )
+                }
+
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = dogData.age.capitalize(),
+                        style = MaterialTheme.typography.caption,
+                    )
+
+                    Text(
+                        text = dogData.gender.capitalize(),
+                        style = MaterialTheme.typography.caption,
+                    )
+                }
+
+            }
+
+        }
+
 
     }
 }
