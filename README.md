@@ -18,6 +18,9 @@ PupDopter :dog2: is Puppy adoption app build with :heart: and :rocket: Jetpack C
 ## Preview :movie_camera:
 <br>
 <img src="./pugdopter.gif" alt="pugdopter Preview"/>
+
+<img src="./1preview.jpeg" alt="pugdopter Preview"/>
+<img src="./2preview.jpeg" alt="pugdopter Preview"/>
 <br>
 
 ## Built With 🛠
