@@ -112,6 +112,7 @@ fun DetailScreen(navController: NavHostController) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
 
+
                         Text(
                             text = dogData.name,
                             style = MaterialTheme.typography.h1
@@ -133,8 +134,6 @@ fun DetailScreen(navController: NavHostController) {
                             tint = color
                         )
                     }
-
-
 
                     Row(
                         modifier = Modifier
@@ -180,53 +179,20 @@ fun DetailScreen(navController: NavHostController) {
                     )
 
                     Text(
-                        text = dogData.happySound.repeat(3),
+                        text = "${dogData.happySound} ".repeat(3),
                         style = MaterialTheme.typography.body2
                     )
 
-                    Button(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(dp48),
-                        onClick = {
-                            Toast.makeText(
-                                context,
-                                dogData.memePhrase,
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        },
-                        colors = ButtonDefaults.buttonColors(backgroundColor = Teal200)
-                    ) {
-
-                        val homeIcon: Painter = painterResource(id = R.drawable.ic_home)
-                        Icon(
-                            painter = homeIcon,
-                            contentDescription = null,
-                            modifier = Modifier.size(dp16),
-                            tint = Color.White
-                        )
-
-                        Spacer(modifier = Modifier.width(dp16))
-
-                        Text(
-                            text = "Adopt ${dogData.name} Now!",
-                            fontSize = sp14,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
-                        )
-
-                    }
-
-                    Spacer(modifier = Modifier.height(dp8))
+                    Spacer(modifier = Modifier.height(dp24))
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
 
                         Button(
                             modifier = Modifier
-                                .fillMaxWidth(0.35f)
                                 .height(dp48),
                             onClick = {
                                 Toast.makeText(
@@ -235,33 +201,33 @@ fun DetailScreen(navController: NavHostController) {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             },
-                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Magenta)
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Teal200)
                         ) {
 
 
-                            val homeIcon: Painter = painterResource(id = R.drawable.ic_like)
+                            val locationIcon: Painter = painterResource(id = R.drawable.ic_location)
+
+                            Spacer(modifier = Modifier.width(dp8))
+
+                            Text(
+                                text = "Visit me?",
+                                color = Color.White,
+                                style = MaterialTheme.typography.button
+                            )
+
+                            Spacer(modifier = Modifier.width(dp8))
+
                             Icon(
-                                painter = homeIcon,
+                                painter = locationIcon,
                                 contentDescription = null,
                                 modifier = Modifier.size(dp16),
                                 tint = Color.White
-                            )
-
-                            Spacer(modifier = Modifier.width(dp16))
-
-
-                            Text(
-                                text = "favorite",
-                                fontSize = sp14,
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold
                             )
 
                         }
 
                         Button(
                             modifier = Modifier
-                                .fillMaxWidth(0.7f)
                                 .height(dp48),
                             onClick = {
                                 Toast.makeText(
@@ -269,10 +235,22 @@ fun DetailScreen(navController: NavHostController) {
                                     dogData.memePhrase,
                                     Toast.LENGTH_SHORT
                                 ).show()
-                            }
+                            },
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Teal200)
                         ) {
 
-                            val homeIcon: Painter = painterResource(id = R.drawable.ic_location)
+                            val homeIcon: Painter = painterResource(id = R.drawable.ic_home)
+
+                            Spacer(modifier = Modifier.width(dp8))
+
+                            Text(
+                                text = "Adopt Now!",
+                                color = Color.White,
+                                style = MaterialTheme.typography.button
+                            )
+
+                            Spacer(modifier = Modifier.width(dp8))
+
                             Icon(
                                 painter = homeIcon,
                                 contentDescription = null,
@@ -280,24 +258,17 @@ fun DetailScreen(navController: NavHostController) {
                                 tint = Color.White
                             )
 
-                            Spacer(modifier = Modifier.width(dp16))
-
-                            Text(
-                                text = "Book a Visit",
-                                fontSize = sp14,
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold
-                            )
-
                         }
+
+
                     }
 
+                    Spacer(modifier = Modifier.height(dp16))
+
                 }
-
-
             }
-        }
 
+        }
     }
 }
 
